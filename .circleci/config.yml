@@ -23,10 +23,10 @@ jobs:
           name: Build and push Docker image
           command: |
             npm run build
-            docker build -t rpg/$IMAGE_NAME:$TAG .
+            docker build -t baasbank/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push rpg/$IMAGE_NAME:$TAG
+            docker push baasbank/$IMAGE_NAME:$TAG
       - run:
           name: Deploy app to Digital Ocean Server via Docker
           command: |
-            ssh -o StrictHostKeyChecking=no 35.196.4.150  "/bin/bash ./deploy_app.sh rpg/$IMAGE_NAME:$TAG"
+            ssh -o StrictHostKeyChecking=no 35.196.4.150  "/bin/bash ./deploy_app.sh baasbank/$IMAGE_NAME:$TAG"
