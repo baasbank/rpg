@@ -4,7 +4,7 @@
       <div class="min-max-total"><span>max: {{ getMaximumNumber }},</span><span>min: {{ getMinimumNumber }},</span><span>total number generated: {{totalNumber}}</span></div>
     </div>
     <div class="btn-sort">
-      <a-button class="asc" type="primary" @click="sortByAsc">Sort in Asc</a-button>
+      <a-button class="asc" type="primary" @click="sortByAscending">Sort in Asc</a-button>
       <a-button class="desc" type="primary" @click="sortByDesc">Sort in Desc</a-button>
       <a-button type="primary" class="saveNumbers" @click="savePhoneNumbers(phoneNumbers);"
         >Save Numbers</a-button
