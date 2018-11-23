@@ -78,6 +78,7 @@ export default {
       )
     },
     generatePhone () {
+      this.phoneNumbers = []
       for (let i = 0; i < this.value; i++) {
         if (
           _.findIndex(this.phoneNumbers, {
