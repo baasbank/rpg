@@ -6,7 +6,8 @@
 # RUN npm run build
 
 # Stage 2
-FROM nginx:alpine
-COPY /dist /usr/share/nginx/html/
-EXPOSE 8080
-CMD [“nginx”, “-g”, “daemon off;”]
+FROM nginx
+COPY dist /usr/share/nginx/html/
+COPY start.sh  /usr/share/nginx/html/
+RUN chmod -R 755 /usr/share/nginx/html/
+ENTRYPOINT "/usr/share/nginx/html/start.sh" && /bin/bash
