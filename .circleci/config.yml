@@ -29,5 +29,6 @@ jobs:
       - run:
           name: Deploy app to Digital Ocean Server via Docker
           command: |
-            ssh root@35.196.4.150 "/bin/bash ./deploy_app.sh baasbank/$IMAGE_NAME:$TAG" -y
+            ssh  -o StrictHostKeyChecking=no -i ~/.ssh/gcloud root@35.196.4.150 "/bin/bash ./deploy_app.sh baasbank/$IMAGE_NAME:$TAG"
+            # ssh -o StrictHostKeyChecking=no 35.196.4.150  "/bin/bash ./deploy_app.sh baasbank/$IMAGE_NAME:$TAG"
             
