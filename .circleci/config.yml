@@ -28,6 +28,13 @@ jobs:
       - run:
           name: Copy gcloud service account key
           command: echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud_service_key.json
+      
+  deploy:
+    docker:
+      - image: ubuntu:xenial
+    working_directory: ~/rpg
+    steps:
+      - checkout
       - run:
           name: Run script that deploys to GCP
           command: |
@@ -36,5 +43,16 @@ jobs:
             echo $TAG
             echo $IMAGE_NAME
             . start_deployment.sh
-      
-  
+
+    
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
