@@ -2,7 +2,7 @@
 
 set -e
 DOCKER_IMAGE=$1
-CONTAINER_NAME="hello_world"
+CONTAINER_NAME="rpg"
 # Check for arguments
 if [[ $# -lt 1 ]] ; then
     echo '[ERROR] You must supply a Docker Image to pull'
