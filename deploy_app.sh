@@ -16,4 +16,4 @@ if [ $(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) = "true" ]; then
 fi
 echo "Starting Hello World using Docker Image name: $DOCKER_IMAGE"
 sudo docker run -d --rm=true -p 80:80  --name rpg $DOCKER_IMAGE
-docker ps -a
+sudo docker ps -a

@@ -34,8 +34,10 @@ set_up_gcloud_project() {
 deploy_change() {
   commit_hash=${CIRCLE_SHA1}
   gcloud compute project-info add-metadata --metadata commit_hash=${commit_hash}
-  gcloud beta compute instance-groups managed rolling-action replace  instance-group-rpg --max-surge=$MAX_SURGE --max-unavailable=$MAX_UNAVAILABLE --min-ready=200 --zone=$ZONE
+  gcloud compute project-info add-metadata --metadata image_name='baasbank/'$IMAGE_NAME:$TAG
+  gcloud beta compute instance-groups managed rolling-action replace  instance-group-rpgg --max-surge=$MAX_SURGE --max-unavailable=$MAX_UNAVAILABLE --min-ready=200 --zone=$ZONE
 }
+
 
 main() {
   add_gcloud_apt_repository
