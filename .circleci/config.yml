@@ -24,13 +24,6 @@ jobs:
             docker build -t baasbank/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push baasbank/$IMAGE_NAME:$TAG
-      
-  deploy:
-    docker:
-      - image: ubuntu:xenial
-    working_directory: ~/rpg
-    steps:
-      - checkout
       - run:
           name: Copy gcloud service account key
           command: echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud_service_key.json
@@ -42,15 +35,5 @@ jobs:
             echo $TAG
             echo $IMAGE_NAME
             . ./start_deployment.sh
-    
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      
+  
