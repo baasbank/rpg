@@ -25,15 +25,15 @@ jobs:
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push baasbank/$IMAGE_NAME:$TAG
       
-    deploy:
-      docker:
-        - image: ubuntu:xenial
-      steps:
-        - checkout
-        - run:
-            name: Run script that deploys to GCP
-            command: . ./start_deployment.sh
-      
+  deploy:
+    docker:
+      - image: ubuntu:xenial
+    steps:
+      - checkout
+      - run:
+          name: Run script that deploys to GCP
+          command: . ./start_deployment.sh
+    
 workflows:
   version: 2
   build-and-deploy:
