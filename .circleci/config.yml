@@ -35,6 +35,6 @@ jobs:
             echo 'export IMAGE_NAME=rpg-docker' >> $BASH_ENV 
             echo $TAG
             echo $IMAGE_NAME
-            . ./start_deployment.sh
+            . start_deployment.sh
       
   
