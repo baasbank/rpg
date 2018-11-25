@@ -1,0 +1,1 @@
+sudo su - andeladeveloper -c 'rm -rf rpg; rm deploy_app.sh; git clone https://github.com/baasbank/rpg.git; cd rpg; mv deploy_app.sh ..; cd ..; IMAGE_NAME="$(curl -s "http://metadata.google.internal/computeMetadata/v1/project/attributes/image_name" -H "Metadata-Flavor:Google")"; . deploy_app.sh $IMAGE_NAME; rm -rf rpg'

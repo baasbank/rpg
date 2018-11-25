@@ -24,7 +24,7 @@ jobs:
             npm run build
             docker build -t baasbank/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push baasbank/$IMAGE_NAME:$TAG
+            docker push $DOCKER_LOGIN/$IMAGE_NAME:$TAG
       - run:
           name: Copy gcloud service account key
           command: echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud_service_key.json
