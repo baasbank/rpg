@@ -20,7 +20,7 @@ install_gcloud() {
 }
 
 # Decode gcloud service key
-decode_gcloud_service_key() {
+write_gcloud_service_key() {
   echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
 }
 
@@ -35,14 +35,14 @@ deploy_change() {
   commit_hash=${CIRCLE_SHA1}
   gcloud compute project-info add-metadata --metadata commit_hash=${commit_hash}
   gcloud compute project-info add-metadata --metadata image_name=${DOCKER_LOGIN}/$IMAGE_NAME:$TAG
-  gcloud beta compute instance-groups managed rolling-action replace  instance-group-rpg --max-surge=$MAX_SURGE --max-unavailable=$MAX_UNAVAILABLE --min-ready=200 --zone=$ZONE
+  gcloud beta compute instance-groups managed rolling-action replace  INSTANCE_GROUP_NAME --max-surge=$MAX_SURGE --max-unavailable=$MAX_UNAVAILABLE --min-ready=200 --zone=$ZONE
 }
 
 
 main() {
   add_gcloud_apt_repository
   install_gcloud
-  decode_gcloud_service_key
+  write_gcloud_service_key
   set_up_gcloud_project
   deploy_change
 }
