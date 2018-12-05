@@ -8,7 +8,7 @@ if [[ $# -lt 1 ]] ; then
     echo '[ERROR] You must supply a Docker Image to pull'
     exit 1
 fi
-echo "Deploying Hello World to Docker Container"
+echo "Deploying RPG Docker Container"
 
 #Check for running container & stop it before starting a new one
 if [ $(sudo docker inspect -f '{{.State.Running}}' $CONTAINER_NAME) = "true" ]; then
